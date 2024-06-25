@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <div class="row flex-column">
+          <div class="logo">
+            <i class="fa-solid fa-cloud"></i>
+          </div>
+
+          <ul class="navbar-list">
+            <li class="list-item">
+              <i class="fa-solid fa-sun-plant-wilt"></i>
+            </li>
+            <li class="list-item"><i class="fa-solid fa-list-check"></i></li>
+            <li class="list-item"><i class="fa-solid fa-street-view"></i></li>
+            <li class="list-item"><i class="fa-solid fa-gears"></i></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="search-bar">
+      <div class="search-bar-inner">
+        <input type="text" placeholder="Search city" id="search-city" />
+        <div class="search-icon" onclick="currentWeatherData()">
+          <i class="fa-solid fa-magnifying-glass-location"></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="container-hero-section">
+        <div class="place-degree">
+          <div class="city">
+            <div class="city-name" style="text-transform: uppercase;" id="city-name">Madrid</div>
+            <div class="prediction" id="chance-of-rain">Chance of rain : 10%</div>
+          </div>
+
+          <div class="degree" id="hero-temperature">36&deg;C.</div>
+        </div>
+
+        <div class="hero-icon" >
+          <img src="./images/sun.png" id="main-img" alt="" />
+        </div>
+      </div>
+
+      <div class="forecast">
+        <div class="forecast-inner">
+          <div class="forecast-title">today's forecast</div>
+
+          <ul class="forecast-list" id="forecast-list">
+            <li class="forecast-item">
+                <div class="timing">6:00 AM</div>
+                <img class="forecast-img" src="./images/cloudy.png" width="40"></img>
+                <div class="forecast-degree">25&deg;C.</div>
+            </li>
+            <li class="forecast-item">
+                <div class="timing">9:00 AM</div>
+                <img class="forecast-img" src="./images/partly-cloudy.png" width="40"></img>
+                <div class="forecast-degree">28&deg;C.</div>
+            </li>
+            <li class="forecast-item">
+                <div class="timing">12:00 PM</div>
+                <img class="forecast-img" src="./images/sun.png" width="40"></img>
+                <div class="forecast-degree">33&deg;C.</div>
+            </li>
+            <li class="forecast-item">
+                <div class="timing">3:00 PM</div>
+                <img class="forecast-img" src="./images/sun.png" width="40"></img>
+                <div class="forecast-degree">34&deg;C.</div>
+            </li>
+            <li class="forecast-item">
+                <div class="timing">6:00 PM</div>
+                <img class="forecast-img" src="./images/sun.png" width="40"></img>
+                <div class="forecast-degree">32&deg;C.</div>
+            </li>
+            <li class="forecast-item">
+                <div class="timing">9:00 PM</div>
+                <img class="forecast-img" src="./images/partly-cloudy.png" width="40"></img>
+                <div class="forecast-degree">30&deg;C.</div>
+            </li>
+        </ul>
+        </div>     
+      </div>
+
+      <div class="air-condition">
+        <div class="air-condition-inner" >
+            <div class="air-condition-title" >Air Condition</div>
+                
+            <button class="air-condition-button">See More</button>
+           
+            <div class="air-condition-item row">
+                <div class="air-condition-item-inner flex-50">
+                    <div class="air-condition-icon">
+                        <i class="fa-solid fa-temperature-three-quarters"></i>
+                    </div>
+                    <div class="text-content">
+                        <div class="text">Humidity</div>
+                        <div class="content"  id="real-feel">30&deg;C</div>
+                    </div>
+                </div>
+                <div class="air-condition-item-inner flex-50">
+                    <div class="air-condition-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+
+                    <div class="text-content">
+                        <div class="text">Wind</div>
+                        <div class="content"  id="wind">0.2 km/h</div>
+                    </div>
+                </div>
+                <div class="air-condition-item-inner flex-50">
+                    <div class="air-condition-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+
+                    <div class="text-content" >
+                        <div class="text" >Chance of rain</div>
+                        <div class="content" id="chance">0%</div>
+                    </div>
+                </div>
+                <div class="air-condition-item-inner flex-50">
+                    <div class="air-condition-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <div class="text-content">
+                        <div class="text" >UV Index</div>
+                        <div class="content" id="uv-index">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="days">
+        <div class="days-inner">
+            <div class="seven-day-forecast">
+                7 day forecast
+            </div>
+
+            <ul class="days-container" id="days-container">
+                <li class="days-item">
+                    <div class="day-name">Today</div>
+
+                    <div class="day-icon-weather" >
+                        <img class="day-icon" src="./images/sun.png"></img>
+                        <div class="day-weather">Sunny</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Tue</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="./images/sun.png"></img>
+                        <div class="day-weather">Sunny</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Wed</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="./images/sun.png"></img>
+                        <div class="day-weather">Sunny</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Thu</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="./images/cloudy.png"></img>
+                        <div class="day-weather">Cloudy</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Fri</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="./images/cloudy.png"></img>
+                        <div class="day-weather">Cloudy</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Sat</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="./images/rainy.png"></img>
+                        <div class="day-weather">Rainy</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+                <li class="days-item">
+                    <div class="day-name">Sun</div>
+
+                    <div class="day-icon-weather">
+                        <img class="day-icon" src="images/stormy.png"></img>
+                        <div class="day-weather">Stormy</div>
+                    </div>
+
+                    <div class="day-degree">
+                        <div class="high-degree">25°C / </div>
+                        <div class="low-degree">15°C</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
